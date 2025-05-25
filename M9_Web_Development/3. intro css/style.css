@@ -1,0 +1,21 @@
+body{
+    font-family: 'lato', sans-serif;
+}
+header>div>h1{
+    color:#5DA9E9;
+}
+header>img{
+    width: 100px;
+}
+header>div>img{
+    width: 400px;
+}
+section>div>img{
+    width: 400px;
+}
+section div div img{
+    width: 40px;
+}
+.card img{
+    width: 100px;
+}
