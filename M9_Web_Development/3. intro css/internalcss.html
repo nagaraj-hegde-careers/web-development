@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Internal CSS Example</title>
+
+        <style>
+            h1{
+                color: blue;
+            }
+            h3{
+                color: green;
+            }
+            p{
+                color: grey;
+            }
+            .science{
+                color: blueviolet;
+            }
+            .lit{
+                color: cyan;
+            }
+            #special-student{
+                color: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hello world!</h1>
+        <h3>How are you, doing?</h3>
+        <h1 style="color: red;">This shows inline css takes priority</h1>
+        <p>This is an example of internal css</p>
+        <p style="color: red;">This shows inline css takes priority</p>
+        <h1 class="science">Student-1 - Science</h1>
+        <h1 class="science">Student-2 - Science</h1>
+        <h1 class="lit">Student-3 - Literature</h1>
+        <h1 class="lit">Student-4 - Literature</h1>
+        <h1 class="science">Student-5 - Science</h1>
+        <h1 id="special-student">Student-6</h1>
+    </body>
+</html>

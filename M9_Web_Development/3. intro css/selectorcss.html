@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>selectors</title>
+        <style>
+        /* descendant selector, This will select all <li> elements that are descendants of <div> */
+            div li{
+                color: blue;
+            }
+        /* child selector, This will select <span> elements that are direct children of <h1> elements, which are direct children of <div> */
+            div>h1>span{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+            <!-- only select second list and nake it blue.
+            only make that list blue which is under the "div -->
+        <ol>
+            <li>I</li>
+            <li>am</li>
+            <li>a</li>
+            <li>list</li>
+        </ol>
+        <div>
+            <ol>
+                <li>select</li>
+                <li>me</li>
+            </ol>
+        </div>
+        <!-- make direct son as "red" -->
+        <div>
+            <h1>
+                <span>I am a direct son</span>
+            </h1>
+        </div>
+        <div>
+            <span>
+                <h1>
+                    <span>I am a indirect son</span>
+                </h1>
+            </span>
+        </div>
+    </body>
+</html>
