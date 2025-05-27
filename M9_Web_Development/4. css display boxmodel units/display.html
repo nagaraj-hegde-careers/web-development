@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Display css</title>
+        <style>
+            p{
+                border: 1px solid red;
+                height: 100px;
+                width: 100px;
+                margin: 40px;
+            }
+            h1{
+                border: 1px solid black;
+                height: 500px;
+                width: 500px;
+                /* margin: 50px; */
+                /* padding: 50px; */
+                display: inline; /* height, width are not applied with inline only margin and padding works*/
+            }
+            h2{
+                border: 1px solid red;
+                height: 500px;
+                width: 500px;
+                margin: 20px;
+                padding: 20px;
+                display: inline-block; /*  applied with inline-block */
+            }
+            span{
+                border: 1px solid blue;
+                height: 500px;
+                width: 500px;
+                padding: 10px;
+                margin: 50px;
+            }
+            a{
+                border: 1px solid black;
+                height: 50px;
+                width: 500px;
+                margin: 20px;
+                display: block; /* block element, height and width applied */
+            }
+        </style>
+    </head>
+    <body>
+        <p>paragraph1</p>
+        <p>paragraph2</p>
+        <span>span1.</span>
+        <span>span2. since span is an inline element, by default height and with doesnt apply, padding and margin works</span><br />
+        <h1>h1, display set as inline, height width doesn't apply</h1>
+        <h2>h2, display set as inline-block, height width can apply</h2>
+        <span>span3</span>
+        <a href="https://google.com">google website</a>
+        <span>span4</span>
+    </body>
+</html>

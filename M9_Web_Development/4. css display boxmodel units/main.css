@@ -1,0 +1,59 @@
+.box{
+    background-color: brown;
+    height: 100px;
+    width: 200px;
+    /* padding-top: 10px;
+    padding-left: 20px; */
+    padding: 10px 20px 30px;
+    border: solid 15px green;
+    border-radius: 20px;
+    border-top-color:yellow;
+    border-left-color: purple;
+    border-top-width: 5px;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+    overflow: scroll;
+}
+.box2 {
+    margin: 30px;
+}
+.container {
+    background-color: lightgreen;
+    /* margin-top: 20px ;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    margin-right: 50px; */
+
+    /* Case-1 Apply all four Values */
+    /* top right bottom left */
+    /* margin : 10px 20px 30px 40px;  */
+
+    /* Case-2 Apply three Values */
+
+    /* top , left and right , bottom */
+
+    /* margin: 10px 20px 30px ; */
+
+    /* Case-3 Apply two Values */
+
+    /* top and bottom , left and right */
+    margin: 20px 30px;
+
+    border-top: 5px solid blue;
+    border-left: 2px solid tomato;
+    border-right: 6px dashed black;
+    border-bottom: 5px solid yellow;
+
+    /* border-radius: 20px; */
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 30px;
+    /* following padding is conflicting. */
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+
+    /* property which comes at the end will be applied */
+    padding: 10px 20px 30px 40px;
+}
