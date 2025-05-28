@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>media example</title>
+        <style>
+            body {
+                font-size: 20px;
+                margin: 20px;
+                background-color: yellow;
+            }
+            /* media query for devices less than 500px width */
+            @media only screen and (max-width:500px){
+                body{
+                    font-size: 12px;
+                    color: blue;
+                }
+            }
+            /* media query for devices more than 500px & less than 800px width */
+             @media only screen and (min-width: 500px) and (max-width: 800px) {
+                body {
+                    font-size: 14px;
+                    color: red
+                }
+            }
+            /* media query for devices more than 800px width */
+            @media only screen and (min-width: 800px) {
+                body {
+                    font-size: 16px;
+                    color: green
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Responsive design</h1>
+        <p>example text. example text.example text.example text.example text.example text.example text.example text.example
+            text.example text.example text.</p>
+    </body>
+</html>
