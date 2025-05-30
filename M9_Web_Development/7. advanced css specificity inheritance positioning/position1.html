@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>position1</title>
+        <style>
+            .normal-flow {
+                position: static;
+                border: solid 1px black;
+                padding: 10px;
+                /* no affect */
+                top: 20px;
+                left: 30px;
+            }
+            .bookshelf {
+                width: 300px;
+                height: 300px;
+                border: solid 1px black;
+                background-color: yellow;
+                position: relative;
+            }
+            .book {
+                width: 50px;
+                height: 100px;
+                background-color: aquamarine;
+            }
+            .book2 {
+                /* position: relative; */
+                position: absolute;
+                top: 20px;
+                left: 30px
+            }
+            .book3 {
+                background-color: green;
+            }
+            .book4 {
+                background-color: maroon;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="normal-flow">Im static positioned...</div>
+        <div class="bookshelf">
+            <div class="book">Book1</div>
+            <div class="book book2">Book2</div>
+            <div class="book book3">Book 3</div>
+            <div class="book book4">Book 4</div>
+        </div>
+    </body>
+</html>

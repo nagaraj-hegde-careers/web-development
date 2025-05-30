@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>specificity</title>
+        <style>
+        /* #fruits {
+            color: red;
+        }
+
+        .favourite {
+            color: green !important;
+        }
+
+        .mango {
+            color: blue
+        } */
+
+        ul#fruits li.mango {
+            color: brown;
+        }
+
+        ul#fruits .mango {
+            color: yellow !important;
+        }
+
+        ul#fruits .favourite {
+            color: blue !important
+        }
+
+        ul#fruits li {
+            color: green
+        }
+
+        body {
+            color: pink !important;
+            /* only second list is affected due to inheritance */
+        }
+
+        li {
+            color: cyan
+        }
+    </style>
+    </head>
+    <body>
+        <ul id="fruits">
+            <li>Apple</li>
+            <li class="favourite mango">Mango</li>
+            <li>Orange</li>
+        </ul>
+
+        <ul>
+            <li style="color: black">eat</li>
+            <li>sleep</li>
+            <li>repeat</li>
+        </ul>
+    </body>
+</html>
