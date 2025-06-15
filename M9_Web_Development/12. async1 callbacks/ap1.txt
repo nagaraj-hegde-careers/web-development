@@ -1,0 +1,8 @@
+A man has two cubes on his desk. Every day, he arranges the two cubes, so that their front faces display the current day of the month. What numbers should be on the faces of the cubes to achieve this?
+
+To find the answer:
+
+Arrange the digits on each cube in ascending order
+then concatenate them together.
+
+ans- cube 1: 012345        cube 2:012678
