@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DOM index2 list</title>
+        <style>
+            .seven{
+                color: lightcoral;
+                font-size: 20px;            
+            }
+            .one {
+                color: blue;
+            }   
+        </style>
+    </head>
+    <body>
+        <li>112211</li>
+        <ul id="target-ul">
+            <li class="one">1</li>
+            <li>2</li>
+            <li>3</li>  
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            
+            <li>8</li>
+            <li>9</li>  
+            <li>10</li>
+        </ul>
+        <script>
+        // number 7 is missing and add it appropriately.
+        const ourList = document.querySelector("#target-ul");
+        console.log(ourList);
+        let allItems = ourList.querySelectorAll('li');
+        console.log(allItems);
+        let indexThatHasEighthNode =allItems[6];
+        let newSeventhElement = document.createElement("li")
+        newSeventhElement.innerText = '7';
+        newSeventhElement.classList.add("seven"); //adding a class
+        allItems[0].classList.remove('one'); //removing a class
+        if (newSeventhElement.classList.contains('seven')){
+            console.log("class is applied");
+        } else {
+            console.log("class not applied...");
+        }
+        // insert the new element before the eighth node
+        // insertBefore
+        // SYNTAX: parentNode.insertBefore(newNode, referenceNode)
+        ourList.insertBefore(newSeventhElement, indexThatHasEighthNode);
+
+        </script>
+    </body>
+</html>

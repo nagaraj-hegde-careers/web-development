@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name=" viewport" content="width= device-width, initial-scale=1.o">
+        <title>DOM index1 append</title>
+    </head>
+    <body>
+        <div class="hello-div"> 
+            <p> "hello i'm p" </p>
+        </div>
+        <button id="btn1"> Click me to append Hello </button>
+        <script>
+            const buttonElement= document.getElementById("btn1")
+            buttonElement.addEventListener('click', function(){
+                console.log('button clicked');
+                const newElement = document.createElement("span")
+                newElement.innerText = "Hello";
+                console.log(newElement);
+                const parentElement = document.querySelector('.hello-div');
+                //parentElement.appendChild(newElement); //for adding at the end of parent node
+                parentElement.prepend(newElement); //for adding as first node under parent
+            })       
+        </script>
+    </body>
+</html>

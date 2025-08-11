@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    /* Optional: add some padding/margin so color change is clearer */
+    p {
+      padding: 0.5em;
+      margin: 0.5em 0;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores,
+    rerum repudiandae enim consectetur consequatur quae recusandae,
+    perferendis at quod illum, deleniti similique a eius nulla architecto
+    earum. Iure, deleniti.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores,
+    rerum repudiandae enim consectetur consequatur quae recusandae,
+    perferendis at quod illum, deleniti similique a eius nulla architecto
+    earum. Iure, deleniti.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi dolores,
+    rerum repudiandae enim consectetur consequatur quae recusandae,
+    perferendis at quod illum, deleniti similique a eius nulla architecto
+    earum. Iure, deleniti.
+  </p>
+
+  <script>
+    // Select all <p> elements
+    const paragraphs = document.querySelectorAll('p');
+
+    paragraphs.forEach(p => {
+      p.addEventListener('click', e => {
+        // e.detail gives the click count: 1 = single, 2 = double, 3 = triple
+        switch (e.detail) {
+          case 1:
+            // Single click: highlight red
+            p.style.backgroundColor = 'red';
+            break;
+          case 2:
+            // Double click: highlight green
+            p.style.backgroundColor = 'green';
+            break;
+          case 3:
+            // Triple click: remove highlight
+            p.style.backgroundColor = '';
+            break;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
