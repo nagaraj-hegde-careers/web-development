@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #hello {
+            height: 100px;
+            width: 200px;
+            position: absolute;
+            top: 30px;
+            left: 50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id='hello'>Hello</div>
+
+    <script>
+        let helloDiv = document.querySelector("#hello");
+        const results = helloDiv.getBoundingClientRect()
+        console.log(results)
+        /*
+            {
+            "x": 50,
+            "y": 30,
+            "width": 200,
+            "height": 100,
+            "top": 30,
+            "right": 250,
+            "bottom": 130,
+            "left": 50
+            }
+        **/
+    </script>
+
+</body>
+
+</html>

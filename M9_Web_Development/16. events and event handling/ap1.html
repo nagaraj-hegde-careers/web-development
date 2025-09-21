@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ap1</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      div {
+        height: 100vh;
+        width: 100vw;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+        // Write your solution here ================================
+        // Reference the div
+      const fullDiv = document.querySelector('div');
+
+      // Function to update background based on width
+      function updateBackground() {
+        const w = window.innerWidth;
+        if (w > 1024) {
+          fullDiv.style.background = 'red';
+        } else if (w > 600) {
+          fullDiv.style.background = 'blue';
+        } else {
+          fullDiv.style.background = 'green';
+        }
+      }
+
+      // Run on load and on resize
+      window.addEventListener('resize', updateBackground);
+      updateBackground();
+    </script>
+  </body>
+</html>

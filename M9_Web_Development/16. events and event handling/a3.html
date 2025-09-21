@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>a3</title>
+</head>
+
+<body>
+    <div id="doubleHolder">
+        <button class="double">double</button>
+    </div>
+
+    <script>
+        // Write your JS program here =========
+         // Reference the parent container
+        const holder = document.getElementById('doubleHolder');
+
+        // Use event delegation: listen for clicks on any .double button
+        holder.addEventListener('click', function(event) {
+            // Check that the clicked element is a button with class "double"
+            if (event.target.matches('button.double')) {
+                // Remove the clicked button
+                const btn = event.target;
+                holder.removeChild(btn);
+
+                // Create two new buttons and append them
+                for (let i = 0; i < 2; i++) {
+                    const newBtn = document.createElement('button');
+                    newBtn.className = 'double';
+                    newBtn.textContent = 'double';
+                    holder.appendChild(newBtn);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

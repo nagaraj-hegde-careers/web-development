@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>a2</title>
+        <style>
+            .cell {
+                border: 1px solid;
+                margin: auto;
+                margin-top: 10rem;
+                height: 20rem;
+                width: 20rem;
+                display: flex;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="cell"></div>
+
+    </body>
+    <script>
+        // Write your JS program here
+        // Step 0: Inject CSS rule for .cell.jail
+  const style = document.createElement('style');
+  style.textContent = `
+    .cell.jail {
+      background-image: url('https://d2beiqkhq929f0.cloudfront.net/public_assets/assets/000/055/850/original/jail.jpg?1699030242');
+      background-size: cover;
+      background-position: center;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Step 1: Reference the cell
+  const cell = document.querySelector('.cell');
+
+  // Step 2: Add event listeners to toggle the 'jail' class
+  cell.addEventListener('mouseenter', () => {
+    cell.classList.add('jail');
+  });
+  cell.addEventListener('mouseleave', () => {
+    cell.classList.remove('jail');
+  });
+
+    </script>
+</html>
