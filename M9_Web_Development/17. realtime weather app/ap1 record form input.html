@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="ap1 record form input.css">
+</head>
+
+<body>
+  <h1>DATABASE</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>S. No.</th>
+        <th>Name</th>
+        <th>Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Sameer</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Rohan</td>
+        <td>100</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form>
+    <label for="name">Name:
+      <input type="text" id="name" />
+    </label>
+    <label for="marks">Marks:
+      <input type="number" id="marks" />
+    </label>
+    <input type="submit" value="Submit" />
+  </form>
+  <script>
+    // Q Write a script which takes the entry from the form and add it into the table
+    // solution1 Basic approach
+    // const form = document.querySelector('form');
+    // const tbody = document.querySelector('tbody');
+
+    // form.addEventListener('submit', function (e){
+    //     e.preventDefault();
+    
+    //     // get the input values
+    //     const nameInput = document.getElementById('name');
+    //     const marksInput = document.getElementById('marks');
+
+    //     const name = nameInput.value.trim();
+    //     const marks = marksInput.value.trim();
+
+    //     // validate inputs
+    //     if (name === '' || marks === '') {
+    //         alert('Please fill in both name and marks');
+    //         return;
+    //     }
+
+    //     // calculate next serial number
+    //     const currentRows = tbody.querySelectorAll('tr');
+    //     const nextSNo = currentRows.length + 1;
+
+    //     // create a new row
+    //     const newRow = document.createElement('tr');
+
+    //     //create and add cells
+    //     const snoCell = document.createElement('td');
+    //     snoCell.textContent = nextSNo;
+
+    //     const nameCell = document.createElement('td');
+    //     nameCell.textContent = name;
+
+    //     const marksCell = document.createElement('td');
+    //     marksCell.textContent = marks;
+
+    //     // append cells to row
+    //     newRow.appendChild(snoCell);
+    //     newRow.appendChild(nameCell);
+    //     newRow.appendChild(marksCell);
+
+    //     // append row to tbody
+    //     tbody.appendChild(newRow);
+
+    //     // clear form inputs
+    //     nameInput.value = '';
+    //     marksInput.value = '';
+    // });
+
+    //solution2 concise approach using innerHTML
+    // More concise approach using template literals
+        // const form = document.querySelector('form');
+        // const tbody = document.querySelector('tbody');
+
+        // form.addEventListener('submit', function(e) {
+        //     e.preventDefault();
+            
+        //     const name = document.getElementById('name').value.trim();
+        //     const marks = document.getElementById('marks').value.trim();
+            
+        //     if (name === '' || marks === '') {
+        //         alert('Please fill in both name and marks');
+        //         return;
+        //     }
+            
+        //     const nextSNo = tbody.querySelectorAll('tr').length + 1;
+            
+        //     // Create new row using template literal
+        //     const newRow = `
+        //         <tr>
+        //             <td>${nextSNo}</td>
+        //             <td>${name}</td>
+        //             <td>${marks}</td>
+        //         </tr>
+        //     `;
+            
+        //     tbody.insertAdjacentHTML('beforeend', newRow);
+            
+        //     // Reset form
+        //     form.reset();
+        // });
+            //solution3 comprehensive with validation
+            // Comprehensive solution with proper validation
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.querySelector('form');
+                const tbody = document.querySelector('tbody');
+                const nameInput = document.getElementById('name');
+                const marksInput = document.getElementById('marks');
+                
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = nameInput.value.trim();
+                    const marks = parseInt(marksInput.value);
+                    
+                    // Validation
+                    if (!validateInput(name, marks)) {
+                        return;
+                    }
+                    
+                    addRowToTable(name, marks);
+                    clearForm();
+                });
+                
+                function validateInput(name, marks) {
+                    if (name === '') {
+                        alert('Name cannot be empty');
+                        nameInput.focus();
+                        return false;
+                    }
+                    
+                    if (isNaN(marks) || marks < 0 || marks > 100) {
+                        alert('Marks should be a number between 0 and 100');
+                        marksInput.focus();
+                        return false;
+                    }
+                    
+                    return true;
+                }
+                
+                function addRowToTable(name, marks) {
+                    const nextSNo = tbody.children.length + 1;
+                    
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <td>${nextSNo}</td>
+                        <td>${name}</td>
+                        <td>${marks}</td>
+                    `;
+                    
+                    tbody.appendChild(newRow);
+                }
+                
+                function clearForm() {
+                    nameInput.value = '';
+                    marksInput.value = '';
+                    nameInput.focus(); // Focus back to name input for next entry
+                }
+            });
+
+
+  </script>
+</body>
+
+</html>

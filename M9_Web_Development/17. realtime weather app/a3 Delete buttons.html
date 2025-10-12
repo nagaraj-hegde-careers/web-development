@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="all">Remove All</button>
+    <ul>
+        <li>
+            <p>Task - 1</p>
+            <button>delete</button>
+        </li>
+        <li>
+            <p>Task - 2</p>
+            <button>delete</button>
+        </li>
+        <li>
+            <p>Task - 3</p>
+            <button>delete</button>
+        </li>
+        <li>
+            <p>Task - 4</p>
+            <button>delete</button>
+        </li>
+    </ul>
+    <script>
+        // Write your JS program here =========
+        // solution1 basic approach
+        // const deleteButtons = document.querySelectorAll('li button');
+        // deleteButtons.forEach(button => {
+        //     button.addEventListener('click', function() {
+        //         this.parentElement.style.display = 'none';
+        //     });
+        // });
+
+        // const removeAllButton = document.getElementById('all');
+        // removeAllButton.addEventListener('click', function(){
+        //     document.querySelector('ul').style.display = 'none';
+        // });
+
+        // solution2 Event delegation , more efficient
+        // Task 1: Individual delete buttons using event delegation
+        // const ul = document.querySelector('ul');
+
+        // ul.addEventListener('click', function(e) {
+        //     // Check if clicked element is a delete button
+        //     if (e.target.tagName === 'BUTTON' && e.target.textContent === 'delete') {
+        //         // Hide the parent li element
+        //         e.target.parentElement.style.display = 'none';
+        //     }
+        // });
+
+        // // Task 2: Remove All button
+        // const removeAllButton = document.getElementById('all');
+
+        // removeAllButton.addEventListener('click', function() {
+        //     // Hide the entire ul element
+        //     ul.style.display = 'none';
+        // });
+
+        // solution3 modern ES6+ method
+        // Modern ES6+ approach with arrow functions
+        const deleteButtons = document.querySelectorAll('li button');
+        const removeAllButton = document.getElementById('all');
+        const ul = document.querySelector('ul');
+
+        // Task 1: Individual delete buttons
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.target.parentElement.style.display = 'none';
+            });
+        });
+
+        // Task 2: Remove All button
+        removeAllButton.addEventListener('click', () => {
+            ul.style.display = 'none';
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="listToDestroy">
+    <li id = "Item-1"><a href="#">first item</a></li>
+    <li id = "Item-2"><a href="#">second item</a></li>
+    <li id = "Item-3"><a href="#">third item</a></li>
+    <li id = "Item-4"><a href="#">forth item</a></li>
+    <li id = "Item-5"><a href="#">Fifth item</a></li>
+  </ul>
+  
+  <script>
+    // Q Write a single click event handler that helps to delete any list item when clicked on it, attach that handler to above list
+    // solution1- Basic event delegation
+    // Single click event handler using event delegation
+    // const ul = document.getElementById('listToDestroy');
+    // ul.addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     // Find the closest li element (in case we clicked on the anchor tag)
+    //     const listItem = e.target.closest('li');
+
+    //     if (listItem) {
+    //         listItem.remove(); // remove the list item from DOM
+    //     }
+    // });
+    // solution2 mor detailed with explicit checks
+    // More detailed approach with explicit element checking
+    // const ul = document.getElementById('listToDestroy');
+
+    // ul.addEventListener('click', function(e) {
+    //     e.preventDefault(); // Prevent anchor link navigation
+        
+    //     let targetElement = e.target;
+        
+    //     // Check if we clicked on an anchor tag, get its parent li
+    //     if (targetElement.tagName === 'A') {
+    //         targetElement = targetElement.parentElement;
+    //     }
+        
+    //     // Check if the target is a list item
+    //     if (targetElement.tagName === 'LI') {
+    //         targetElement.remove();
+    //     }
+    // });
+
+    // solution3 - modern ES6+ approach
+    // Ultra-concise modern approach
+    const ul = document.getElementById('listToDestroy');
+
+    const handleItemClick = (e) => {
+        e.preventDefault();
+        e.target.closest('li')?.remove();
+    };
+
+    ul.addEventListener('click', handleItemClick);
+
+    
+  </script>
+</body>
+
+</html>
