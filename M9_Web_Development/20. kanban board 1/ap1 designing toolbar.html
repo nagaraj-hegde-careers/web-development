@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ap1 Designing Toolbar</title>
+    <link rel="stylesheet" href="ap1 designing toolbar.css">
+    <style>
+        /* Write CSS here */
+        .toolbox-cont {
+            background-color: #4b4b4b;
+            display: flex;
+            align-items: center;
+        }
+        .toolbox-priority-cont {
+            background-color: #3d3d3d;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .action-btn-cont {
+            background-color: #3d3d3d;
+            display: flex;
+        }
+        .action-btn-cont>*{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="add-btn">
+                <img src="../../assets/plus-logo.png" alt="color-logo" height="50%">
+            </div>
+            <div class="remove-btn">
+                <img src="../../assets/cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

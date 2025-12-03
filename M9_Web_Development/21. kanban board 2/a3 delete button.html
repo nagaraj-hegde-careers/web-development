@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+
+    <link rel="stylesheet" href="a3 delete button.css">
+
+</head>
+
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="remove-btn">
+                <img src="../../assets/cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div> -->
+    </div>
+    </div>
+
+    <script src="a3 delete button.js">
+    </script>
+    <script>
+        // Write your solution here ====================================================
+        // Flag to track delete button state
+        let deleteFlag = false;
+
+        // Get the delete button element
+        let removeBtn = document.querySelector(".remove-btn");
+
+        // Add event listener to delete button
+        removeBtn.addEventListener("click", function() {
+            toggleDeleteMode();
+        });
+
+        // Algorithm 1: Toggle delete button state
+        function toggleDeleteMode() {
+            if (deleteFlag === false) {
+                // Activate delete mode
+                deleteFlag = true;
+                alert("delete button has been activated");
+                removeBtn.style.backgroundColor = "red";
+            } else {
+                // Deactivate delete mode
+                deleteFlag = false;
+                removeBtn.style.backgroundColor = "inherit";
+            }
+        }
+
+        // Algorithm 2: Add click listeners to all tickets
+        document.addEventListener("DOMContentLoaded", function() {
+            addDeleteListenersToTickets();
+        });
+
+        function addDeleteListenersToTickets() {
+            let allTickets = document.querySelectorAll(".ticket-cont");
+  
+            allTickets.forEach(function(ticket) {
+                ticket.addEventListener("click", function(event) {
+                    // Don't trigger if clicking on task area (for editing)
+                    if (event.target.classList.contains("task-area")) {
+                        return;
+                    }
+        
+                    deleteTicket(ticket);
+                });
+            });
+        }
+
+        // Delete ticket from UI and array
+        function deleteTicket(ticket) {
+            // Check if delete button is active
+            if (deleteFlag === false) {
+                return; // Do nothing if delete mode is inactive
+            }
+  
+            // Get ticket ID to remove from array
+            let ticketID = ticket.querySelector(".ticket-id").innerText;
+  
+            // Remove ticket from UI
+            ticket.remove();
+  
+            // Bonus: Remove from ticketsArr as well
+            ticketsArr = ticketsArr.filter(function(t) {
+                return t.ticketID !== ticketID;
+            });
+  
+            // Update localStorage
+            localStorage.setItem("tickets", JSON.stringify(ticketsArr));
+        }
+
+        // Override createTicket to add delete listener to newly created tickets
+        let originalCreateTicket = createTicket;
+        createTicket = function(ticketTask, ticketColor, ticketID) {
+            originalCreateTicket(ticketTask, ticketColor, ticketID);
+  
+            // Add delete listener to the newly created ticket
+            let newTicket = document.querySelector(".main-cont").lastChild;
+            newTicket.addEventListener("click", function(event) {
+                if (event.target.classList.contains("task-area")) {
+                    return;
+                }
+                deleteTicket(newTicket);
+            });
+        };
+
+    </script>
+
+
+
+</body>
+
+</html>

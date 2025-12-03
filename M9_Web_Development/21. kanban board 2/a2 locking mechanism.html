@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>a2 Ticket Management App</title>
+
+    <link rel="stylesheet" href="a2 locking mechanism.css">
+
+
+</head>
+
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div>
+       <div class="ticket-lock">
+       <button>Locked</button>
+      </div> -->
+    </div>
+    </div>
+
+    <!-- MODAL - Ticket generator window -->
+    <div class="modal-cont">
+
+        <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
+
+       </textarea>
+
+
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color"></div>
+            <div class="lightgreen priority-color"></div>
+            <div class="lightblue priority-color"></div>
+            <div class="black priority-color active"></div>
+        </div>
+
+    </div>
+
+    <script src="a2 locking mechanism.js">
+    </script>
+    <script>
+        // Write your solution here =====================================================
+        // Get all tickets and add event listeners to their lock buttons
+        document.addEventListener("DOMContentLoaded", function() {
+            let allTickets = document.querySelectorAll(".ticket-cont");
+        
+            allTickets.forEach(function(ticket) {
+                let lockButton = ticket.querySelector("button");
+                lockButton.addEventListener("click", function() {
+                    toggleLockState(ticket, lockButton);
+                });
+            });
+        });
+
+        // Toggle lock/unlock state
+        function toggleLockState(ticket, button) {
+            let ticketLockDiv = ticket.querySelector(".ticket-lock, .ticket-unlock");
+            let taskArea = ticket.querySelector(".task-area");
+        
+            // Check current state
+            if (ticketLockDiv.classList.contains("ticket-lock")) {
+                // State 1: Locked -> Unlock
+                ticketLockDiv.classList.remove("ticket-lock");
+                ticketLockDiv.classList.add("ticket-unlock");
+            
+                button.innerText = "Unlocked";
+                taskArea.setAttribute("contenteditable", "true");
+            
+            } else if (ticketLockDiv.classList.contains("ticket-unlock")) {
+                // State 2: Unlocked -> Lock
+                ticketLockDiv.classList.remove("ticket-unlock");
+                ticketLockDiv.classList.add("ticket-lock");
+            
+                button.innerText = "Locked";
+                taskArea.setAttribute("contenteditable", "false");
+            
+                // Update the ticketsArr with new task content
+                updateTicketInArray(ticket);
+            }
+        }
+
+        // Update the ticketsArr when ticket is locked after editing
+        function updateTicketInArray(ticket) {
+            let ticketID = ticket.querySelector(".ticket-id").innerText;
+            let updatedTask = ticket.querySelector(".task-area").innerText;
+        
+            // Find and update the ticket in ticketsArr
+            ticketsArr.forEach(function(ticket) {
+                if (ticket.ticketID === ticketID) {
+                    ticket.ticketTask = updatedTask;
+                }
+            });
+        
+            // Save to localStorage
+            localStorage.setItem("tickets", JSON.stringify(ticketsArr));
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>
