@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="kanban board app improved.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- TOOLBOX: Contains priority filter colors and action buttons -->
+    <div class="toolbox-cont">
+        <!-- Color filter buttons to filter tickets by priority -->
+        <div class="toolbox-priority-cont">
+            <div class="color lightpink" title="Filter by Pink"></div>
+            <div class="color lightgreen" title="Filter by Green"></div>
+            <div class="color lightblue" title="Filter by Blue"></div>
+            <div class="color black" title="Filter by Black"></div>
+        </div>
+
+        <!-- Action buttons: Add and Remove tickets -->
+        <div class="action-btn-cont">
+            <div class="add-btn" title="Add new ticket">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="remove-btn" title="Delete mode">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER: Displays all tickets -->
+    <div class="main-cont">
+        <!-- Tickets will be dynamically added here -->
+    </div>
+
+    <!-- MODAL: Input form to create new tickets -->
+    <div class="modal-cont">
+        <!-- Textarea for task input -->
+        <textarea class="textArea-cont" placeholder="Enter your task here... (Press Shift to create)"></textarea>
+
+        <!-- Priority color selector for new ticket -->
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color" title="Pink priority"></div>
+            <div class="lightgreen priority-color" title="Green priority"></div>
+            <div class="lightblue priority-color" title="Blue priority"></div>
+            <div class="black priority-color active" title="Black priority"></div>
+        </div>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+
+    <!-- Our Scripts -->
+    <script src="kanban board app improved.js"></script>
+</body>
+
+</html>
