@@ -1,3 +1,16 @@
+/*
+This file contains an array of product objects.
+Each product has:
+- id: unique identifier
+- title: product name
+- price: cost
+- description: details
+- category: product type
+- image: product photo URL
+- rating: object containing {rate: number, count: number}
+  - rate: average rating (e.g., 3.9 out of 5)
+  - count: number of people who rated it
+*/
 let data = [
   {
     id: 1,

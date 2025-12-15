@@ -1,0 +1,57 @@
+/* Reset default styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;  /* Full viewport height */
+}
+
+/* Sidebar styling */
+#sidebar {
+    width: 250px;               /* Initial expanded width */
+    background-color: #34495e;  /* Dark blue-grey background */
+    color: white;               /* White text */
+    padding: 15px 30px;         /* Padding as specified */
+    transition: width 0.3s ease; /* Smooth animation when toggling */
+    overflow-y: auto;           /* Scrollbar if content overflows */
+    flex-shrink: 0;            /* Don't shrink the sidebar */
+}
+
+/* Toggle button styling */
+#toggle-button {
+    background-color: #e74c3c;  /* Red background */
+    color: white;               /* White text */
+    border: none;               /* Remove default border */
+    padding: 10px 15px;         /* Padding for button */
+    cursor: pointer;            /* Hand cursor on hover */
+    border-radius: 4px;         /* Slightly rounded corners */
+    font-weight: bold;          /* Bold text */
+    transition: background-color 0.3s ease;  /* Smooth color change */
+    width: 100%;                /* Full width within sidebar */
+    margin-bottom: 20px;        /* Space below button */
+}
+
+/* Toggle button hover effect */
+#toggle-button:hover {
+    background-color: #c0392b;  /* Darker red on hover */
+}
+
+/* Main content area styling */
+#main-content {
+    flex: 1;                    /* Take up remaining space */
+    background-color: #f1c40f;  /* Yellow background */
+    padding: 80px;              /* Padding as specified */
+    overflow-y: auto;           /* Scrollbar if content overflows */
+    transition: padding-left 0.3s ease;  /* Smooth animation */
+}
+
+/* Sidebar collapsed state */
+#sidebar.collapsed {
+    width: 80px;                /* Collapsed width */
+}
+
+/* Adjust main content when sidebar is collapsed */
+#main-content.collapsed-main {
+    padding-left: 80px;         /* Adjust padding when sidebar is collapsed */
+}

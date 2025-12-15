@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <title>Comment reply</title>
+        <link rel="stylesheet" href="comment reply.css">
+    </head>
+
+    <body>
+        <div id="commentForm">
+            <textarea name="comment" id="commentInput" placeholder="Write acomment"></textarea>
+            <button id="submitComment">Comment</button>
+        </div>
+        <div id="commentsContainer">
+            <div class="repliesContainer">
+                <p>Some comment1</p>
+                <button class="replyBtn">Reply</button>
+                <textarea class="replyInput" placeholder="Write a reply"></textarea>
+                <div class="repliesContainer">
+                    <p>Some reply1</p>
+                    <button class="replyBtn">Reply</button>
+                    <textarea class="replyInput" placeholder="Write a reply"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <script src="comment reply.js"></script>
+    </body>
+</html>
