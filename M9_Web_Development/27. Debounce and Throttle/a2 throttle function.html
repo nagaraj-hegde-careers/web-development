@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttle Function Implementation</title>
+</head>
+<body>
+    <p></p>
+    
+    <script id="solution">
+        // Throttle function implementation
+        function throttle(fn, time) {
+            /*
+            Throttling limits how often a function can execute.
+            It ensures the function runs at most once every 'time' milliseconds.
+            
+            Arguments:
+            - fn: The function to be throttled
+            - time: Time interval in milliseconds between executions
+            
+            Returns:
+            - A new function that throttles calls to fn
+            */
+            
+            // Step 1: Track when function was last executed
+            // Initialize to 0 so first call executes immediately
+            let lastExecutedTime = 0;
+            
+            // Step 2: Return a new function that throttles the original
+            return function(...args) {
+                // Step 3: Get current time in milliseconds
+                const currentTime = Date.now();
+                
+                // Step 4: Calculate time elapsed since last execution
+                const timeSinceLastExecution = currentTime - lastExecutedTime;
+                
+                // Step 5: Check if enough time has passed
+                if (timeSinceLastExecution >= time) {
+                    // Execute the function
+                    fn(...args);
+                    
+                    // Update the timestamp for next check
+                    lastExecutedTime = currentTime;
+                }
+                // Otherwise, ignore the call (do nothing)
+            };
+        }
+
+        // ===== TEST CASES =====
+
+        // Test Case 1: Basic throttle test
+        console.log("=== Test 1: Basic Throttle (200ms) ===");
+        const throttledFunc = throttle((value) => console.log(value), 200);
+
+        throttledFunc("First call");   // Should log immediately
+        throttledFunc("Second call");  // Should not log (ignored)
+        throttledFunc("Third call");   // Should not log (ignored)
+
+        // Test Case 2: After 200ms, new call should execute
+        console.log("\n=== Test 2: After 200ms ===");
+        setTimeout(() => {
+            throttledFunc("Fourth call"); // Should log (200ms passed)
+        }, 200);
+
+        // Test Case 3: Multiple throttled functions
+        console.log("\n=== Test 3: Multiple Functions ===");
+        const throttledLog2 = throttle((msg) => console.log(`Message: ${msg}`), 300);
+
+        throttledLog2("A");  // Should execute
+        throttledLog2("B");  // Ignored
+        throttledLog2("C");  // Ignored
+
+        setTimeout(() => {
+            throttledLog2("D"); // Should execute (300ms passed)
+        }, 300);
+
+        // Test Case 4: Rapid clicks simulation
+        console.log("\n=== Test 4: Rapid Calls (100ms throttle) ===");
+        let clickCount = 0;
+        const throttledClick = throttle(() => {
+            clickCount++;
+            console.log(`Click executed: ${clickCount}`);
+        }, 100);
+
+        // Simulate 5 rapid clicks
+        throttledClick(); // Execute (0ms)
+        throttledClick(); // Ignore
+        throttledClick(); // Ignore
+        throttledClick(); // Ignore
+        throttledClick(); // Ignore
+
+        setTimeout(() => {
+            throttledClick(); // Execute (100ms passed)
+        }, 100);
+
+        setTimeout(() => {
+            throttledClick(); // Execute (200ms passed)
+        }, 200);
+    </script>
+</body>
+</html>

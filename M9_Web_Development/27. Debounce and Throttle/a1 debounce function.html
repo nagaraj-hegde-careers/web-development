@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items Buy</title>
+</head>
+
+<body>
+    <p></p>
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id="solution">
+        // complete the debounce function given below
+       function debounce(func, wait) {
+  /*
+  ==================================================
+  DEBOUNCE FUNCTION IMPLEMENTATION
+  ==================================================
+  
+  A debounce function delays the execution of a function
+  until after a specified amount of time has passed since
+  the last time it was called.
+  
+  Arguments:
+  - func: The function to be debounced (called after wait time)
+  - wait: Time in milliseconds to wait before executing func
+  
+  Returns:
+  - A new function that will execute func after 'wait' ms
+    of inactivity
+  ==================================================
+  */
+
+  // Step 1: Create a variable to store the timeout ID
+  // This will be used to cancel previous timeouts
+  let timeoutId;
+
+  // Step 2: Return a new function that replaces the original
+  // This function will be called multiple times
+  return function(...args) {
+    /*
+    Step 3: Clear any existing timeout
+    
+    If clearTimeout is called with an ID, it cancels that timeout.
+    This prevents the previous call from executing.
+    
+    Example:
+    - User calls debounced function at 0ms
+    - Timeout is set to execute at 200ms (timeoutId = 1)
+    - User calls debounced function at 50ms
+    - clearTimeout(1) cancels the previous timeout
+    - New timeout is set to execute at 250ms (timeoutId = 2)
+    */
+    clearTimeout(timeoutId);
+
+    /*
+    Step 4: Set a new timeout
+    
+    setTimeout schedules a function to run after 'wait' milliseconds.
+    We store the timeout ID so we can cancel it if needed.
+    
+    The callback function:
+    - Uses 'func' from the outer scope (closure)
+    - Uses '...args' to pass all arguments to the original function
+    */
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, wait);
+  };
+}
+
+/*
+==================================================
+HOW IT WORKS - STEP BY STEP EXAMPLE
+==================================================
+
+Scenario: debounce(console.log, 200)
+
+Timeline:
+0ms   - Call 1: debouncedFunc("First call")
+       └─ Set timeout to execute at 200ms
+       
+50ms  - Call 2: debouncedFunc("Second call")
+       └─ clearTimeout() cancels the 200ms timeout
+       └─ Set NEW timeout to execute at 250ms
+       
+100ms - Call 3: debouncedFunc("Third call")
+       └─ clearTimeout() cancels the 250ms timeout
+       └─ Set NEW timeout to execute at 300ms
+       
+250ms - TIMEOUT EXPIRED from Call 2
+       └─ But it was already cancelled!
+       └─ Nothing happens
+       
+300ms - TIMEOUT EXPIRED from Call 3
+       └─ func("Third call") EXECUTES
+       └─ Console logs: "Third call"
+
+Result: Only the LAST call within the wait period executes
+
+==================================================
+*/
+
+/*
+==================================================
+TEST CASES
+==================================================
+*/
+
+// Test 1: Basic debounce with console.log
+const debouncedLog = debounce((value) => console.log(value), 200);
+
+// These three calls happen quickly
+debouncedLog("First call");   // Will NOT execute (cancelled)
+debouncedLog("Second call");  // Will NOT execute (cancelled)
+debouncedLog("Third call");   // WILL execute after 200ms
+
+// Output after 200ms: "Third call"
+
+/*
+==================================================
+REAL-WORLD EXAMPLES
+==================================================
+
+1. SEARCH INPUT (most common use case)
+   - User types "j" → Don't search yet
+   - User types "ja" → Don't search yet
+   - User types "jav" → Don't search yet
+   - User stops typing for 300ms → Now search!
+   - This prevents too many API calls
+
+2. WINDOW RESIZE
+   - User resizes window many times per second
+   - With debounce, layout calculation only happens
+     once after user stops resizing
+
+3. AUTO-SAVE
+   - User types a document
+   - Every keystroke triggers auto-save logic
+   - With debounce, save only happens after user
+     stops typing for 2 seconds
+
+==================================================
+*/
+
+/*
+==================================================
+KEY CONCEPTS
+==================================================
+
+1. CLOSURE
+   - The returned function has access to 'func' and 'wait'
+   - These variables persist between function calls
+
+2. REST PARAMETERS (...args)
+   - Captures all arguments passed to the function
+   - ['arg1', 'arg2', 'arg3'] → can pass to original func
+
+3. clearTimeout()
+   - Cancels a scheduled timeout
+   - Prevents previously scheduled functions from running
+
+4. setTimeout()
+   - Schedules a function to run after specified delay
+   - Returns a timeout ID that can be used to cancel it
+
+==================================================
+*/
+
+    </script>
+</body>
+
+</html>
