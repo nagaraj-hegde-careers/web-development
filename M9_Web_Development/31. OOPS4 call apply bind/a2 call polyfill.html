@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>a2 call polyfill</title>
+</head>
+
+<body>
+    <!-- Write your code solution here, inside the function -->
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id='solution' defer>
+        Function.prototype.customCall = function (obj, ...args) {
+            // Write your solution here ========================
+            // // Handle null/undefined context
+            // const context = obj || globalThis;
+            // // Add unique temporary property to avoid conflicts
+            // const tempkey = Symbol('tempFn');
+            // context[tempkey] = this;
+            // // Execute function and capture result
+            // const result = context[tempkey](...args);
+            // // Clean up temporary property
+            // delete context[tempkey];
+            // return result;
+            obj.fn = this;
+            const result = obj.fn(...args);
+            delete obj.fn;
+            return result;
+        }
+    </script>
+    <script >
+        const person = {
+            name: 'John'
+        }
+        function greet(){
+            return 'Hello, ' + this.name+'!';
+        }
+        const result = greet.call(person);
+        console.log (result);
+
+        const result2 = greet.customCall(person);
+        console.log (result2);
+    </script>
+</body>
+
+</html>

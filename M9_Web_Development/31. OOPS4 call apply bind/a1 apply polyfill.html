@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+</head>
+
+<body>
+    
+    <!-- Write your code solution here, inside the applyPolyfill function -->
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id='solution' defer>
+        function applyPolyfill(fn, context, args) {
+            // Write your solution here ========================
+
+            // Add fn as a method to context object temporarily
+            context.tempFn = fn;
+            // Call the function with context as 'this' and spread args
+            const result = context.tempFn(...args);
+            // Clean up: remove the temporary method
+            delete context.tempFn;
+            return result;
+        }
+    </script>
+    <script >
+        const person = {
+            name: 'John'
+        }
+        function greet(country) {
+            return 'Hello, '+ this.name+' From '+ country;
+        }
+        const result = applyPolyfill(greet, person, ['India']);
+        console.log(result);
+        // console.log(greet.apply(person, ['USA']))
+    </script>
+</body>
+
+</html>
