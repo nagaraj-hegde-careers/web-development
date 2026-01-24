@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a2 map polyfill</title>
+</head>
+
+<body>
+    <!-- Write your code solution here, inside the map function -->
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id='solution' defer>
+        function map(arr, callback) {
+            // Write your solution here ========================
+            // validate inputs
+            if (!Array.isArray(arr)) {
+                throw new TypeError('First argument must be an array');
+            }
+            if (typeof callback !== 'function') {
+                throw new TypeError('Second argument must be a function');
+            }
+            // Create result array (native map preserves length)
+            const result = new Array(arr.length);
+            // Iterate through ALL indices (0 to length-1)
+            for (let i = 0; i < arr.length; i++) {
+                if (i in arr) {
+                    // callback(element, index, originalArray) - full signature
+                    result[i] = callback(arr[i], i, arr);
+                } else {
+                    // Preserve holes in sparse arrays (native map behavior)
+                    // result[i] remains undefined
+                }
+            }    
+            return result;
+        }
+
+        arr = [1, 2, 3, 4, 5];
+        result= map(arr, num => num * num);
+        console.log(result)
+    </script>
+</body>
+
+</html>

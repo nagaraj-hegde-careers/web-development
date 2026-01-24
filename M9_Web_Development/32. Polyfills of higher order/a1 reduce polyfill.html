@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a1 reduce polyfill</title>
+</head>
+
+<body>
+    <!-- Write your code solution here, inside the reduce function -->
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id='solution' defer>
+        function reduce(arr, reducer) {
+            // Write your solution here ========================
+            if(!Array.isArray(arr)) {
+                throw new TypeError('First argument must be an array');
+            }
+            if (typeof reducer !== 'function') {
+                throw new TypeError('Second argument must be a function');
+            }
+            // Handle empty array edge case
+            if (arr.length === 0) {
+                throw new TypeError('Reduce of empty array with no initial value');
+            }
+            // CRITICAL: For single-element array, return the element itself
+            // Native reduce([5], fn) returns 5, doesn't call reducer
+            if (arr.length === 1) {
+                return arr[0];
+            }
+            // Initialize accumulator with FIRST element, start from SECOND element
+            let accumulator = arr[0];
+            
+            // Iterate through array starting from index 1
+            for (let i = 1; i < arr.length; i++) {
+                // Handle sparse arrays - skip holes
+                if (i in arr) {
+                    // Call reducer: accumulator, currentValue, index, array
+                    accumulator = reducer(accumulator, arr[i], i, arr);
+                }
+            }
+            return accumulator; 
+        } 
+
+        arr = [2, 3, 4];
+        reducer = function(a, b){
+            return a-b;
+        }
+        console.log(reduce(arr, reducer)); // Output: -5
+    </script>
+</body>
+
+</html>
