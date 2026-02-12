@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a1 all</title>
+</head>
+
+
+<body>
+    <!-- Write your code solution here, inside the main function -->
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id='solution' defer>
+        function all(promises) {
+            //write your code here ===============================================
+            // Handle empty input - resolve immediately with empty array
+            if (!promises || promises.length === 0) {
+                return Promise.resolve([]);
+            }
+    
+            // Array to store resolved results (in order)
+            const results = new Array(promises.length);
+            // Counter for resolved promises
+            let resolvedCount = 0;
+    
+            // Create promise that resolves when ALL promises resolve
+            return new Promise((resolve, reject) => {
+                promises.forEach((promise, index) => {
+                    // Handle both Promises and Promise-returning functions
+                    Promise.resolve(promise)
+                        .then(result => {
+                            // Store result at CORRECT index (maintains order)
+                            results[index] = result;
+                            resolvedCount++;
+                            
+                            // ALL done?
+                            if (resolvedCount === promises.length) {
+                                resolve(results);
+                            }
+                        })
+                        .catch(reject);  // First rejection → immediate reject
+                });
+            });
+        }
+
+        // test 1 immediate promises
+        // let ans = "";
+        // all([
+        //     Promise.resolve(ans += `func1 `), 
+        //     Promise.resolve(ans += `func2 `), 
+        //     Promise.resolve(ans += `func3 `)
+        // ]).then(results => {
+        //     console.log("Results:", results);
+        //     console.log("ans:", ans);  // "func1 func2 func3 "
+        // });
+
+        // test 2 setTimeout promises
+        // let ans = "";
+        // const func1 = () => new Promise(resolve => 
+        //     setTimeout(() => resolve(ans += `setTimeout called for func1\n`), 100)
+        // );
+        // const func2 = () => new Promise(resolve => 
+        //     setTimeout(() => resolve(ans += `setTimeout called for func2\n`), 200)
+        // );
+        // const func3 = () => new Promise(resolve => 
+        //     setTimeout(() => resolve(ans += `setTimeout called for func3\n`), 300)
+        // );
+
+        // all([func1(), func2(), func3()]).then(() => {
+        //     console.log(ans);
+        // }).catch(err => console.error(err));
+
+    </script>
+</body>
+
+</html>

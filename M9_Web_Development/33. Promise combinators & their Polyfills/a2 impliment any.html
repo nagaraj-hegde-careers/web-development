@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a2 any</title>
+</head>
+
+
+<body>
+    <!-- Write your code solution here, inside the main function -->
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id='solution' defer>
+        function promiseAny(iterable) {
+        //write your code here ===============================================
+
+            // Handle empty iterable - reject immediately with AggregateError
+            if (!iterable || iterable.length === 0) {
+                const aggregateError = new AggregateError([]);
+                return Promise.reject(aggregateError);
+            }
+            
+            // Track rejected errors
+            const errors = [];
+            let rejectedCount = 0;
+            
+            // Create promise that resolves with FIRST success
+            return new Promise((resolve, reject) => {
+                iterable.forEach((promise, index) => {
+                    Promise.resolve(promise)
+                        .then(result => {
+                            // FIRST success → resolve immediately!
+                            resolve(result);
+                        })
+                        .catch(error => {
+                            // Collect error
+                            errors[index] = error;
+                            rejectedCount++;
+                            
+                            // ALL rejected?
+                            if (rejectedCount === iterable.length) {
+                                const aggregateError = new AggregateError(errors.filter(Boolean));
+                                reject(aggregateError);
+                            }
+                        });
+                });
+            });
+
+            // Test 1: Immediate win
+            // promiseAny([Promise.resolve(42), Promise.resolve(21)]).then(console.log); // 42
+
+            // Test 2: Delayed win  
+            // promiseAny([
+            //     new Promise(r => setTimeout(r, 100, 42)),
+            //     Promise.reject('Err')
+            // ]).then(console.log); // 42
+
+            // Test 3: All fail
+            // promiseAny([
+            //     Promise.reject('p0'), 
+            //     Promise.reject('p1')
+            // ]).catch(e => console.log(e.errors)); // ['p0', 'p1']
+        }
+    </script>
+</body>
+
+</html>
