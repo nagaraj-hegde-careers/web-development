@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a1 deep copy</title>
+</head>
+
+<body>
+    <!-- Write your code solution here, inside the makeDeepCopy function -->
+    <!-- WARNING:
+        Don't make any changes outside the given function. (would fail test cases)
+        Write the required code and return the correct answer. -->
+    <script id='solution' defer>
+        function makeDeepCopy(object) {
+            // Write your solution here ========================
+            if ( object === null || typeof object !== 'object') {
+                return object;
+            }
+            if (Array.isArray(object)) {
+                let copy = [];
+                for (let i = 0; i < object.length; i++) {
+                    copy[i] = makeDeepCopy(object[i]);
+                }
+                return copy;
+            }
+            if (object instanceof Function) {
+                return object.bind({});
+            }
+            if (object instanceof Object) {
+                let copy = {};
+                for (let key in object) {
+                    copy[key] = makeDeepCopy(object[key]);
+                }
+                return copy;
+            }
+        }
+        let ingredients_list = { 
+            dish: "noodles", 
+            recipe: { list: ["eggs", "flour", "water"] } 
+        };
+        const deepIngredients_list = makeDeepCopy(ingredients_list);
+        deepIngredients_list.recipe.list[0] = "potatoes";
+        console.log(ingredients_list.recipe.list[0]); // Output: "eggs"
+        console.log(deepIngredients_list.recipe.list[0]) 
+    </script>
+</body>
+
+</html>
